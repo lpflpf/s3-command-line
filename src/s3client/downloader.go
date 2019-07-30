@@ -107,11 +107,11 @@ func downloadByStdout(ses *session.Session, bucket string, key string) {
 	bufReader := bufio.NewReader(output.Body)
 
 	for {
-		if data, err := bufReader.ReadBytes('\n'); err != io.EOF {
-			fmt.Printf("%s", string(data))
-			continue
+		data, err := bufReader.ReadBytes('\n')
+		fmt.Printf("%s", string(data))
+		if err == io.EOF {
+			break
 		}
-		break
 	}
 }
 

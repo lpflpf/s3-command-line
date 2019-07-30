@@ -102,7 +102,7 @@ func formatSize(size int64) (output string) {
 	switch {
 	case idx == -1:
 		return fmt.Sprintf("%3d", size)
-	case idx > 0 && idx <= 2:
+	case idx >= 0 && idx <= 2:
 		if fSize >= 10 {
 			return fmt.Sprintf("%3.0f%c", fSize, units[idx])
 		}
