@@ -68,7 +68,7 @@ func uploadFile(ses *session.Session, path string, bucket string, key string) {
 		log.Fatalf("file %s open failed.\n", path)
 	} else {
 		uploader := s3manager.NewUploader(ses)
-		result, err := uploader.Upload(&s3manager.UploadInput{
+		_, err := uploader.Upload(&s3manager.UploadInput{
 			Bucket: aws.String(bucket),
 			Key:    aws.String(key),
 			Body:   fd,
@@ -77,7 +77,7 @@ func uploadFile(ses *session.Session, path string, bucket string, key string) {
 		if err != nil {
 			log.Printf("upload %s failed, error:%v", path, err)
 		} else {
-			log.Printf("upload %s success!, path: %s\n", path, result.Location)
+			log.Printf("upload %s success!\n", path)
 		}
 	}
 }
