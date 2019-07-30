@@ -6,6 +6,17 @@
   - 文件的删除
   - 文件大小，更新时间查看
 
+### session config
+
+```json
+{
+  "id": "",
+  "secret": "",
+  "endPoint": "",
+  "region": ""
+}
+```
+
 ```
 Usage:
         s3 <command> [arguments]
