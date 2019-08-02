@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/lpflpf/s3-command-line/s3client"
 	"os"
-	"s3client"
 )
 
 func main() {
