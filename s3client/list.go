@@ -29,10 +29,10 @@ func List(arguments []string) {
         bucket            bucket name
         pattern           file pattern
 
-		example:
-		    ./s3 list -c config.json example-bucket /pattern*
-		    ./s3 list -c config.json example-bucket /pattern-all-name
-		    ./s3 list -c config.json example-bucket /pattern*.tar.gz
+        example:
+            ./s3 list -c config.json example-bucket /pattern*
+            ./s3 list -c config.json example-bucket /pattern-all-name
+            ./s3 list -c config.json example-bucket /pattern*.tar.gz
 
 `
 		fmt.Print(usage)
