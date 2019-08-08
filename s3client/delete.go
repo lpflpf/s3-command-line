@@ -14,12 +14,12 @@ import (
 
 func Delete(args []string) {
 	var configPath string
-	deleteFlags := flag.NewFlagSet("s3 downloader", flag.ExitOnError)
+	deleteFlags := flag.NewFlagSet("s3 rm ", flag.ExitOnError)
 	deleteFlags.StringVar(&configPath, "c", "", "config path")
 	deleteFlags.Usage = func() {
-		usage := `Usage of S3 Downloader:
+		usage := `Usage of S3 Delete:
 
-        ./s3 delete -c config.json <bucket> <file ...>
+        ./s3 rm -c config.json <bucket> <file ...>
 
         -c config.json  config path
         bucket          bucket name

@@ -19,14 +19,14 @@ func Downloader(args []string) {
 	var configPath, dir string
 	var standardOutput bool
 
-	downloadFlags := flag.NewFlagSet("s3 downloader", flag.ExitOnError)
+	downloadFlags := flag.NewFlagSet("s3 get ", flag.ExitOnError)
 	downloadFlags.StringVar(&configPath, "c", "", "config path")
 	downloadFlags.StringVar(&dir, "d", "./", "local directory")
 	downloadFlags.BoolVar(&standardOutput, "x", false, "stdout")
 	downloadFlags.Usage = func() {
 		usage := `Usage of S3 Downloader:
 
-        ./s3 download -c config.json [-d directory] [-x] <bucket> <file ...>
+        ./s3 get -c config.json [-d directory] [-x] <bucket> <file ...>
 
         -c config.json  config path
         -d directory    local directory

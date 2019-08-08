@@ -22,7 +22,7 @@ func List(arguments []string) {
 	downloadFlags.Usage = func() {
 		usage := `Usage of S3 List:
 
-        ./s3 list -c config.json [ -h]  <bucket> <pattern>
+        ./s3 ls -c config.json [ -h]  <bucket> <pattern>
 
         -c config.json    config path
         -h                human reading
@@ -30,9 +30,9 @@ func List(arguments []string) {
         pattern           file pattern
 
         example:
-            ./s3 list -c config.json example-bucket /pattern*
-            ./s3 list -c config.json example-bucket /pattern-all-name
-            ./s3 list -c config.json example-bucket /pattern*.tar.gz
+            ./s3 ls -c config.json example-bucket /pattern*
+            ./s3 ls -c config.json example-bucket /pattern-all-name
+            ./s3 ls -c config.json example-bucket /pattern*.tar.gz
 
 `
 		fmt.Print(usage)

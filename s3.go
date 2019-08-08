@@ -18,14 +18,13 @@ func main() {
 	}
 
 	switch os.Args[1] {
-	case "upload":
+	case "put":
 		s3client.Uploader(arguments)
-	case "ls":
-	case "download":
+	case "get":
 		s3client.Downloader(arguments)
-	case "delete":
+	case "rm":
 		s3client.Delete(arguments)
-	case "list":
+	case "ls":
 		s3client.List(arguments)
 	default:
 		Usage()
@@ -39,10 +38,10 @@ Usage:
 
 The commands are:
 
-        upload    upload file to s3
-        download  download file from s3
-        delete    delete file in s3
-        list      list files in s3
+        put       upload file to s3
+        get       download file from s3
+        rm        delete file in s3
+        ls        list files in s3
 
 Use "s3 <command> " for more information about a command.
 

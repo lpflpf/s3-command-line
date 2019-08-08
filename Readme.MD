@@ -23,10 +23,10 @@ Usage:
 
 The commands are:
 
-        upload    upload file to s3
-        download  download file from s3
-        delete    delete file in s3
-        list      list files in s3
+        put       upload file to s3
+        get       download file from s3
+        rm        delete file in s3
+        ls        list files in s3
 
 Use "s3 <command> " for more information about a command.
 ```
@@ -36,7 +36,7 @@ Use "s3 <command> " for more information about a command.
 ```
 Usage of S3 Uploader:
 
-        ./s3 upload -c config.json [-d directory] <bucket> <file ...>
+        ./s3 put -c config.json [-d directory] <bucket> <file ...>
 
         -c config.json  config path
         -d directory    local directory
@@ -50,7 +50,7 @@ Usage of S3 Uploader:
 ```
 Usage of S3 Downloader:
 
-        ./s3 download -c config.json [-d directory] [-x] <bucket> <file ...>
+        ./s3 get -c config.json [-d directory] [-x] <bucket> <file ...>
 
         -c config.json  config path
         -d directory    local directory
@@ -63,7 +63,7 @@ Usage of S3 Downloader:
 ```
 Usage of S3 Downloader:
 
-        ./s3 delete -c config.json <bucket> <file ...>
+        ./s3 rm -c config.json <bucket> <file ...>
 
         -c config.json  config path
         bucket          bucket name
@@ -76,7 +76,7 @@ Usage of S3 Downloader:
 
 Usage of S3 List:
 
-        ./s3 list -c config.json [ -h]  <bucket> <pattern>
+        ./s3 ls -c config.json [ -h]  <bucket> <pattern>
 
         -c config.json    config path
         -h                human reading

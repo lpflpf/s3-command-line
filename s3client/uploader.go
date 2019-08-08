@@ -14,14 +14,14 @@ import (
 
 func Uploader(args []string) {
 	var configPath, dir string
-	uploaderFlag := flag.NewFlagSet("s3 uploader", flag.ExitOnError)
+	uploaderFlag := flag.NewFlagSet("s3 put", flag.ExitOnError)
 
 	uploaderFlag.StringVar(&configPath, "c", "", "config path")
 	uploaderFlag.StringVar(&dir, "d", "", "s3 directory.")
 	uploaderFlag.Usage = func() {
 		usage := `Usage of S3 Uploader:
 
-        ./s3 upload -c config.json [-d directory] <bucket> <file ...>
+        ./s3 put -c config.json [-d directory] <bucket> <file ...>
 
         -c config.json  config path
         -d directory    local directory
