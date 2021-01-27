@@ -58,7 +58,7 @@ func Downloader(args []string) {
 				downloadByStdout(sess, bucket, file)
 			}
 		} else {
-			dir = strings.Trim(dir, string([]byte{filepath.Separator}))
+			dir = strings.TrimRight(dir, string([]byte{filepath.Separator}))
 			for _, file := range files {
 				download(sess, dir, bucket, file)
 			}
