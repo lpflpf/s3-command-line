@@ -43,7 +43,7 @@ The commands are:
 
         put       upload file to s3
         get       download file from s3
-		geturl    get download file url
+        geturl    get download file url
         rm        delete file in s3
         ls        list files in s3
 
