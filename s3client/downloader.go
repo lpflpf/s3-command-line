@@ -4,16 +4,54 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	"io"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
+
+func GetUrl(args []string) {
+	var configPath string
+	var duration int
+
+	downloadFlags := flag.NewFlagSet("s3 geturl", flag.ExitOnError)
+	downloadFlags.IntVar(&duration, "d", 24, "config path")
+	downloadFlags.StringVar(&configPath, "c", "", "config path")
+	downloadFlags.Usage = func() {
+		usage := `Usage of S3 Downloader:
+
+        ./s3 geturl -c config.json [ -d 24 ] <bucket> <file ...>
+
+        -c config.json  config path
+        -d 24			duration default 24(h)
+        -x              set output is stdout
+        bucket          bucket name
+
+`
+		fmt.Print(usage)
+	}
+
+	if err := downloadFlags.Parse(args); err != nil || len(downloadFlags.Args()) < 2 {
+		downloadFlags.Usage()
+		os.Exit(0)
+	}
+
+	bucket, files := downloadFlags.Args()[0], downloadFlags.Args()[1:]
+
+	if config, err := Load(configPath); err != nil {
+		log.Fatal(err)
+	} else {
+		sess := NewSession(config)
+		fmt.Println(getdownloadURL(sess, bucket, files[0], time.Hour*time.Duration(duration)))
+	}
+}
 
 func Downloader(args []string) {
 	var configPath, dir string
@@ -122,4 +160,16 @@ func s3download(ses *session.Session, writer io.WriterAt, bucket string, key str
 		Key:    aws.String(key),
 	})
 	return err
+}
+
+func getdownloadURL(ses *session.Session, bucket string, key string, duration time.Duration) string {
+	svc := s3.New(ses)
+	req, _ := svc.GetObjectRequest(&s3.GetObjectInput{Bucket: aws.String(bucket), Key: aws.String(key)})
+	urlStr, err := req.Presign(duration)
+
+	if err != nil {
+		log.Println("Failed to sign request", err)
+	}
+
+	return urlStr
 }

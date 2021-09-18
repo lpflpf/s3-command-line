@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/lpflpf/s3-command-line/s3client"
 	"os"
+
+	"github.com/lpflpf/s3-command-line/s3client"
 )
 
 func main() {
@@ -26,6 +27,8 @@ func main() {
 		s3client.Delete(arguments)
 	case "ls":
 		s3client.List(arguments)
+	case "geturl":
+		s3client.List(arguments)
 	default:
 		Usage()
 	}
@@ -40,6 +43,7 @@ The commands are:
 
         put       upload file to s3
         get       download file from s3
+		geturl    get download file url
         rm        delete file in s3
         ls        list files in s3
 
