@@ -28,7 +28,7 @@ func main() {
 	case "ls":
 		s3client.List(arguments)
 	case "geturl":
-		s3client.List(arguments)
+		s3client.GetUrl(arguments)
 	default:
 		Usage()
 	}
